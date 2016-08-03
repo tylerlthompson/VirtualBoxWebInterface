@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<link rel= 'stylesheet' type= 'text/css' href= '/static/styles.css'/>
+		<link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico" />
+		<title>
+			VirtualBox Web Interface
+		</title>
+	</head>
+	<body>
+		<div id='logintitle'>
+			VirtualBox Web Interface running on {{hostname}}
+		</div>
+		<p></p>
+		<form action="/login" method='POST'>
+			<table>
+				<tr>
+					<td class='login' >
+						Username
+					</td>
+					<td class='login' >
+						<input type="text" name='username'/>
+					</td>
+				</tr>
+				<tr>
+					<td class='login' >
+						Password
+					</td>
+					<td class='login' >
+						<input type="password" style="-webkit-text-security: square;" name='password'/>
+					</td>
+				</tr>
+				<tr>
+					<td class='login' >
+					</td>
+					<td class='login' >
+					</td>
+					<td class='loginButton' >
+						<input class='button' type='submit' value='Login' />
+					</td>
+				</tr>
+			</table>
+
+		</form>
+	</body>
+</html>

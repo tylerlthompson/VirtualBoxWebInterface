@@ -1,0 +1,54 @@
+
+2016-08-02 16:07:03.371241: admin logged in successfully.
+2016-08-02 16:07:13.912903: Creating new VM test2 CPUs:1 Memory:1024 HardDrive: CD Drive:/usr/share/virtualbox/VBoxGuestAdditions.iso Network Adapter: em1 MAC:auto Virtual machine 'test2' is created and registered.
+UUID: 4c751f70-dc43-4e48-bbec-17c571aa9fa0
+Settings file: '/root/VirtualBox VMs/test2/test2.vbox'
+2016-08-02 16:07:14.053332: Changing CD Drive media on test2 to /usr/share/virtualbox/VBoxGuestAdditions.iso 
+2016-08-02 16:07:53.683732: admin did not login successfully.
+2016-08-02 16:08:01.754380: tyler did not login successfully.
+2016-08-02 16:08:19.501013: admin logged in successfully.
+2016-08-02 16:08:23.492016: Changing CD Drive media on test2 to /usr/share/virtualbox/VBoxGuestAdditions.iso 
+2016-08-02 16:08:23.527952: Changing Hard Drive media on test2 to empty 
+2016-08-02 16:08:23.562184: Changing amount of CPUs on test2 to 1 
+2016-08-02 16:08:23.602151: Changing memory on test2 to 1024mb 
+2016-08-02 16:08:23.639230: Changing network adapter on test2 to bridge to em1 
+2016-08-02 16:08:23.675703: Changing OS Type on test2 to Other 
+2016-08-02 16:08:23.714442: Changing MAC Address on test2 to 08002706E35D 
+2016-08-02 16:08:23.739534: Changing name of test2 to test2 
+2016-08-02 16:10:07.132997: Deleting VM TestVM 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2016-08-02 16:10:12.307335: admin logged in successfully.
+2016-08-02 16:10:22.206468: Deleting VM test2 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2016-08-02 16:17:54.293489: admin logged in successfully.
+2016-08-02 16:18:25.787471: admin logged in successfully.
+2016-08-02 16:23:51.820942: admin logged in successfully.
+2016-08-02 16:24:22.769729: Stopping VM WindowsVM 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2016-08-02 16:25:08.917434: admin logged in successfully.
+2016-08-02 16:27:22.636479: admin logged in successfully.
+2016-08-02 16:30:07.950338: admin logged in successfully.
+2016-08-02 16:30:12.909365: admin logged in successfully.
+2016-08-02 16:33:24.584118: admin logged in successfully.
+2016-08-02 16:35:34.161417: admin logged in successfully.
+2016-08-02 16:36:19.373006: admin logged in successfully.
+2016-08-02 16:38:32.309869: admin logged in successfully.
+2016-08-02 16:46:07.829668: admin logged in successfully.
+2016-08-02 16:46:23.429898: admin logged in successfully.
+2016-08-02 16:46:38.885640: admin logged in successfully.
+2016-08-02 16:46:44.549993: admin logged in successfully.
+2016-08-02 16:48:02.846758: admin logged in successfully.
+2016-08-02 16:49:07.246384: admin logged in successfully.
+2016-08-02 16:49:48.630194: admin logged in successfully.
+2016-08-02 16:50:21.446245: admin logged in successfully.
+2016-08-02 16:51:18.007460: admin logged in successfully.
+2016-08-02 16:51:56.623000: admin logged in successfully.
+2016-08-02 16:53:13.840479: admin logged in successfully.
+2016-08-02 16:53:32.159190: admin logged in successfully.
+2016-08-02 16:53:35.622406: Creating new VM test CPUs:1 Memory:1024 HardDrive: CD Drive: Network Adapter: em1 MAC:auto Virtual machine 'test' is created and registered.
+UUID: 7a2448ea-620f-4582-be26-2141484e7d15
+Settings file: '/root/VirtualBox VMs/test/test.vbox'
+2016-08-02 16:53:42.334344: Deleting VM test 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2016-08-02 16:54:33.823474: admin logged in successfully.
+2016-08-02 16:54:46.381006: Creating new VM test2 CPUs:1 Memory:1024 HardDrive: CD Drive: Network Adapter: em1 MAC:auto Virtual machine 'test2' is created and registered.
+UUID: 1e254f34-b081-46b7-a0f1-bcb729897727
+Settings file: '/root/VirtualBox VMs/test2/test2.vbox'
+2016-08-02 16:59:35.231125: admin logged in successfully.
+2016-08-02 16:59:40.800636: Deleting VM test2 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%

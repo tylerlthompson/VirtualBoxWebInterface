@@ -1,0 +1,85 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: VirtualBoxWebInterface
+# Required-Start: $local_fs $network $named $time $syslog 
+# Required-Stop: $local_fs $network $named $time $syslog 
+# Default-Start: 2 3 4 5 
+# Default-Stop: 0 1 6 
+# Description: Web Interface for VirtualBox
+### END INIT INFO
+
+NAME=VirtualBoxWebInterface
+EXT=py
+SCRIPT=/etc/"$NAME"/"$NAME"."$EXT"
+RUNAS=root
+PIDFILE=/var/run/"$NAME".pid
+LOGFILE=/var/log/"$NAME".log
+
+start() {
+  if [ -f "$PIDFILE" ] && kill -0 $(cat "$PIDFILE"); then
+    echo 'service already running' >&2
+    return 1
+  fi
+  echo 'starting service…' >&2
+  local CMD="$SCRIPT &> \"$LOGFILE\" & echo \$!"
+  cd /etc/"$NAME"
+  su $RUNAS -c "python $CMD"
+  sleep 2
+  ps aux | grep "$NAME"."$EXT" | grep -v grep | awk '{print $2}' > $PIDFILE
+  echo 'service started' >&2
+}
+
+stop() {
+  if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE"); then
+    echo 'service not running' >&2
+    return 1
+  fi
+  echo 'stopping service…' >&2
+
+  kill -15 $(cat "$PIDFILE") && rm -f "$PIDFILE"
+  echo 'service stopped' >&2
+}
+
+uninstall() {
+  echo -n "are you really sure you want to uninstall this service? That cannot 
+be undone. [yes|no] "
+  local SURE
+  read SURE
+  if [ "$SURE" = "yes" ]; then
+    stop
+    rm -f "$PIDFILE"
+    echo "notice: log file is not be removed: '$LOGFILE'" >&2
+    update-rc.d -f $NAME remove
+    rm -fv "$0"
+  fi
+}
+status() {
+  if [ -f "$PIDFILE" ] && kill -0 $(cat "$PIDFILE"); then
+    echo 'running' >&2
+    echo "pid:" $(cat "$PIDFILE") >&2
+    return 1
+  else
+    echo 'apparently not running' >&2
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  uninstall)
+    uninstall
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  status)
+    status
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|uninstall|status}"
+esac

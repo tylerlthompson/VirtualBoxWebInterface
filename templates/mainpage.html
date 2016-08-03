@@ -1,0 +1,207 @@
+<html>
+	<head>
+		<link rel= 'stylesheet' type= 'text/css' href= '/static/styles.css'/>
+		<link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico" />
+		<title>VirtualBox Web Interface</title>
+	</head>
+	<body>
+	<div id='hostname'>{{hostname}}</div>
+	<div id='version'>VirtualBox {{version}}</div><p></p><div id='leftCell'><table><th> Available VMs </th><tr><td class='buttonCell'><form action='/' method='POST'><input class='button' name='text' type='submit' value='TestVM' /></form></td></tr><tr><td class='buttonCell'><form action='/' method='POST'><input class='button' name='text' type='submit' value='WindowsVM' /></form></td></tr><tr><td class='buttonCell'><form action='/' method='POST'><input class='button' name='text' type='submit' value='WindowsVM3' /></form></td></tr><tr><td class='buttonCell'><form action='/' method='POST'><input class='button' name='text' type='submit' value='WindowsVM4' /></form></td></tr></table></div>		<div id='rightCell' >
+		<table>
+		<form action="/action" method='POST'>
+			<tr>
+				<td class='h2'>
+				Name
+				</td>
+				<td class='vminfo'>
+				<input type="text" name='curName' placeholder='{{name}}'/>
+				</td>
+			</tr> 
+			<tr>
+				<td class='h2'>
+				Machine State
+				</td>
+				<td class='vminfo'>
+				{{vmstate}}
+				</td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				Operating System
+				</td>
+				<td class='vminfo'>
+				
+				<select name='curOs' ><option value='Other'>Other</option><option value='Other_64'>Other_64</option><option value='Windows31'>Windows31</option><option value='Windows95'>Windows95</option><option value='Windows98'>Windows98</option><option value='WindowsMe'>WindowsMe</option><option value='WindowsNT4'>WindowsNT4</option><option value='Windows2000'>Windows2000</option><option value='WindowsXP'>WindowsXP</option><option value='WindowsXP_64'>WindowsXP_64</option><option value='Windows2003'>Windows2003</option><option value='Windows2003_64'>Windows2003_64</option><option value='WindowsVista'>WindowsVista</option><option value='WindowsVista_64'>WindowsVista_64</option><option value='Windows2008'>Windows2008</option><option value='Windows2008_64'>Windows2008_64</option><option value='Windows7'>Windows7</option><option value='Windows7_64'>Windows7_64</option><option value='Windows8'>Windows8</option><option value='Windows8_64'>Windows8_64</option><option value='Windows81'>Windows81</option><option value='Windows81_64'>Windows81_64</option><option value='Windows2012_64'>Windows2012_64</option><option value='Windows10'>Windows10</option><option value='Windows10_64'>Windows10_64</option><option value='WindowsNT'>WindowsNT</option><option value='WindowsNT_64'>WindowsNT_64</option><option value='Linux22'>Linux22</option><option value='Linux24'>Linux24</option><option value='Linux24_64'>Linux24_64</option><option value='Linux26'>Linux26</option><option value='Linux26_64'>Linux26_64</option><option value='ArchLinux'>ArchLinux</option><option value='ArchLinux_64'>ArchLinux_64</option><option value='Debian'>Debian</option><option value='Debian_64'>Debian_64</option><option value='OpenSUSE'>OpenSUSE</option><option value='OpenSUSE_64'>OpenSUSE_64</option><option value='Fedora'>Fedora</option><option value='Fedora_64'>Fedora_64</option><option value='Gentoo'>Gentoo</option><option value='Gentoo_64'>Gentoo_64</option><option value='Mandriva'>Mandriva</option><option value='Mandriva_64'>Mandriva_64</option><option value='RedHat'>RedHat</option><option value='RedHat_64'>RedHat_64</option><option value='Turbolinux'>Turbolinux</option><option value='Turbolinux_64'>Turbolinux_64</option><option value='Ubuntu'>Ubuntu</option><option selected value='Ubuntu_64'>Ubuntu_64</option><option value='Xandros'>Xandros</option><option value='Xandros_64'>Xandros_64</option><option value='Oracle'>Oracle</option><option value='Oracle_64'>Oracle_64</option><option value='Linux'>Linux</option><option value='Linux_64'>Linux_64</option><option value='Solaris'>Solaris</option><option value='Solaris_64'>Solaris_64</option><option value='OpenSolaris'>OpenSolaris</option><option value='OpenSolaris_64'>OpenSolaris_64</option><option value='Solaris11_64'>Solaris11_64</option><option value='FreeBSD'>FreeBSD</option><option value='FreeBSD_64'>FreeBSD_64</option><option value='OpenBSD'>OpenBSD</option><option value='OpenBSD_64'>OpenBSD_64</option><option value='NetBSD'>NetBSD</option><option value='NetBSD_64'>NetBSD_64</option><option value='OS2Warp3'>OS2Warp3</option><option value='OS2Warp4'>OS2Warp4</option><option value='OS2Warp45'>OS2Warp45</option><option value='OS2eCS'>OS2eCS</option><option value='OS21x'>OS21x</option><option value='OS2'>OS2</option><option value='MacOS'>MacOS</option><option value='MacOS_64'>MacOS_64</option><option value='MacOS106'>MacOS106</option><option value='MacOS106_64'>MacOS106_64</option><option value='MacOS107_64'>MacOS107_64</option><option value='MacOS108_64'>MacOS108_64</option><option value='MacOS109_64'>MacOS109_64</option><option value='MacOS1010_64'>MacOS1010_64</option><option value='MacOS1011_64'>MacOS1011_64</option><option value='DOS'>DOS</option><option value='Netware'>Netware</option><option value='L4'>L4</option><option value='QNX'>QNX</option><option value='JRockitVE'>JRockitVE</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+					Memory (mb)
+				</td>
+				<td>
+					<!-- <input type="text" name='curMemory' placeholder='{{mem}}mb'/> -->
+						<select name='curMem' ><option value='1024'>1024</option><option selected value='2048'>2048</option><option value='3072'>3072</option><option value='4096'>4096</option><option value='5120'>5120</option><option value='6144'>6144</option><option value='7168'>7168</option><option value='8192'>8192</option><option value='9216'>9216</option><option value='10240'>10240</option><option value='11264'>11264</option><option value='12288'>12288</option><option value='13312'>13312</option><option value='14336'>14336</option><option value='15360'>15360</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				CPU(s)
+				</td>
+				<td class='vminfo'>
+					<!-- <input type="text" name='curCpu' placeholder='{{cpu}} core(s)'/> -->
+				<select name='curCpu' ><option value='1'>1</option><option selected value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				Disk Location
+				</td>
+				<td class='vminfo'>
+				<input type="text" name='curHarddrive' placeholder='{{harddrive}}'/>
+				</td> 
+			</tr>
+			<tr>
+				<td class='h2'>
+				Disk Size
+				</td>
+				<td class='vminfo'>
+				{{harddrivesize}}
+				</td> 
+			</tr>
+			<tr>
+				<td class='h2'>
+				CD Drive
+				</td>
+				<td>
+				<input type="text" name='curCddrive' placeholder='{{cddrive}}'/>
+				</td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				Network Adapter
+				</td>
+				<td class='vminfo'>
+				<select name='curNetworkadapter' ><option value='em1'>em1</option><option value='tun0'>tun0</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				MAC Address
+				</td>
+				<td class='vminfo'>
+				<input type="text" name='curMac' placeholder='{{mac}}'/>
+				</td>
+			</tr>
+		</table>
+		
+		<table style='margin-top: 4px;'>
+		<!-- <form action="/action" method='POST'> -->
+			<tr>
+				<td>
+					<input class='button' name='action' type='submit' value='Save'/>
+				</td>
+				<td>
+					<input class='button' name='action' type='submit' value='Start'/>
+				</td>
+				<td>
+					<input class='button' name='action' type='submit' value='Stop'/>
+				</td>
+				<td>
+					<input class='button' name='action' type='submit' value='Restart'/>
+				</td>
+				<td>
+					<input class='button' name='action' type='submit' value='Delete'/>
+				</td>
+			</tr>
+		</form>
+		</table>
+		
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<div id='title2'>
+			Add New VM
+		</div>
+		<form action='/createvm' method='POST'>
+		<table>
+		<tr>
+				<td class='h2'>
+				Name
+				</td>
+				<td>
+				<input type="text" name='name'/>
+				</td>
+			</tr> 
+			<tr>
+				<td class='h2'>
+				Operating System
+				</td>
+				<td>
+				<!-- <td w3-include-html="/static/ostypes.html"> -->
+				
+		<select name='os' ><option value='Other'>Other</option><option value='Other_64'>Other_64</option><option value='Windows31'>Windows31</option><option value='Windows95'>Windows95</option><option value='Windows98'>Windows98</option><option value='WindowsMe'>WindowsMe</option><option value='WindowsNT4'>WindowsNT4</option><option value='Windows2000'>Windows2000</option><option value='WindowsXP'>WindowsXP</option><option value='WindowsXP_64'>WindowsXP_64</option><option value='Windows2003'>Windows2003</option><option value='Windows2003_64'>Windows2003_64</option><option value='WindowsVista'>WindowsVista</option><option value='WindowsVista_64'>WindowsVista_64</option><option value='Windows2008'>Windows2008</option><option value='Windows2008_64'>Windows2008_64</option><option value='Windows7'>Windows7</option><option value='Windows7_64'>Windows7_64</option><option value='Windows8'>Windows8</option><option value='Windows8_64'>Windows8_64</option><option value='Windows81'>Windows81</option><option value='Windows81_64'>Windows81_64</option><option value='Windows2012_64'>Windows2012_64</option><option value='Windows10'>Windows10</option><option value='Windows10_64'>Windows10_64</option><option value='WindowsNT'>WindowsNT</option><option value='WindowsNT_64'>WindowsNT_64</option><option value='Linux22'>Linux22</option><option value='Linux24'>Linux24</option><option value='Linux24_64'>Linux24_64</option><option value='Linux26'>Linux26</option><option value='Linux26_64'>Linux26_64</option><option value='ArchLinux'>ArchLinux</option><option value='ArchLinux_64'>ArchLinux_64</option><option value='Debian'>Debian</option><option value='Debian_64'>Debian_64</option><option value='OpenSUSE'>OpenSUSE</option><option value='OpenSUSE_64'>OpenSUSE_64</option><option value='Fedora'>Fedora</option><option value='Fedora_64'>Fedora_64</option><option value='Gentoo'>Gentoo</option><option value='Gentoo_64'>Gentoo_64</option><option value='Mandriva'>Mandriva</option><option value='Mandriva_64'>Mandriva_64</option><option value='RedHat'>RedHat</option><option value='RedHat_64'>RedHat_64</option><option value='Turbolinux'>Turbolinux</option><option value='Turbolinux_64'>Turbolinux_64</option><option value='Ubuntu'>Ubuntu</option><option value='Ubuntu_64'>Ubuntu_64</option><option value='Xandros'>Xandros</option><option value='Xandros_64'>Xandros_64</option><option value='Oracle'>Oracle</option><option value='Oracle_64'>Oracle_64</option><option value='Linux'>Linux</option><option value='Linux_64'>Linux_64</option><option value='Solaris'>Solaris</option><option value='Solaris_64'>Solaris_64</option><option value='OpenSolaris'>OpenSolaris</option><option value='OpenSolaris_64'>OpenSolaris_64</option><option value='Solaris11_64'>Solaris11_64</option><option value='FreeBSD'>FreeBSD</option><option value='FreeBSD_64'>FreeBSD_64</option><option value='OpenBSD'>OpenBSD</option><option value='OpenBSD_64'>OpenBSD_64</option><option value='NetBSD'>NetBSD</option><option value='NetBSD_64'>NetBSD_64</option><option value='OS2Warp3'>OS2Warp3</option><option value='OS2Warp4'>OS2Warp4</option><option value='OS2Warp45'>OS2Warp45</option><option value='OS2eCS'>OS2eCS</option><option value='OS21x'>OS21x</option><option value='OS2'>OS2</option><option value='MacOS'>MacOS</option><option value='MacOS_64'>MacOS_64</option><option value='MacOS106'>MacOS106</option><option value='MacOS106_64'>MacOS106_64</option><option value='MacOS107_64'>MacOS107_64</option><option value='MacOS108_64'>MacOS108_64</option><option value='MacOS109_64'>MacOS109_64</option><option value='MacOS1010_64'>MacOS1010_64</option><option value='MacOS1011_64'>MacOS1011_64</option><option value='DOS'>DOS</option><option value='Netware'>Netware</option><option value='L4'>L4</option><option value='QNX'>QNX</option><option value='JRockitVE'>JRockitVE</option></select>			</td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				Memory (mb)
+				</td>
+				<td class='vminfo'>
+				<!-- <input type="text" name='mem'/> -->
+				
+				<select name='mem' ><option value='1024'>1024</option><option value='2048'>2048</option><option value='3072'>3072</option><option value='4096'>4096</option><option value='5120'>5120</option><option value='6144'>6144</option><option value='7168'>7168</option><option value='8192'>8192</option><option value='9216'>9216</option><option value='10240'>10240</option><option value='11264'>11264</option><option value='12288'>12288</option><option value='13312'>13312</option><option value='14336'>14336</option><option value='15360'>15360</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				CPU(s)
+				</td>
+				<td class='vminfo'>
+				<!--  <input type="text" name='cpu'/> --><select name='cpu' ><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				Disk Location
+				</td>
+				<td class='vminfo'>
+				<input type="text" name='harddrive'/>
+				</td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				CD Drive
+				</td>
+				<td class='vminfo'>
+				<input type="text" name='cddrive'/>
+				</td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				Network Adapter
+				</td>
+				<td class='vminfo'>
+				<!-- <input type="text" name='networkadapter'/> -->
+				<select name='networkadapter' ><option selected value='em1'>em1</option><option value='tun0'>tun0</option></select></td>
+			</tr>
+			<tr>
+				<td class='h2'>
+				MAC Address
+				</td>
+				<td class='vminfo'>
+				<input type="text" name='mac'/>
+				</td>
+			</tr>
+			<tr>
+				<td style='border: 0;'>
+				</td>
+				<td style='border: 0;'>
+					<div id='createVmButton'>
+						<input class='button' type='submit' value='Add' />
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- <div id='createVmButton'>
+			<input class='button' type='submit' value='Add' />
+		</div> -->
+		</form>
+		</div>
+		
+	</body>
+</html>

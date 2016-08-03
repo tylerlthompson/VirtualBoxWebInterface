@@ -1,0 +1,8 @@
+flask
+flask-login
+py-cpuinfo
+psutil
+netifaces
+request
+post
+get
