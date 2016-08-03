@@ -1,7 +1,7 @@
 '''
 Created on Jul 27, 2016
 
-@author: root
+@author: Tyler Thompson
 '''
 
 import xml.etree.ElementTree as ET

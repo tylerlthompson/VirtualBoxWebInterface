@@ -1,7 +1,7 @@
 '''
 Created on Jul 27, 2016
 
-@author: tyler
+@author: Tyler Thompson
 '''
 
 class VirtualMachine(object):

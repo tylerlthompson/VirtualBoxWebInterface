@@ -5,7 +5,7 @@ Created on Jul 27, 2016
 '''
 
 
-import VirtualMachine, XmlDriver, os, commands, cpuinfo, netifaces, psutil
+import VirtualMachine, XmlDriver, os, commands, cpuinfo, netifaces, psutil, Logger
 
 class VirtualMachineDriver(object):
     '''
@@ -15,6 +15,7 @@ class VirtualMachineDriver(object):
         '''
         Constructor
         '''
+        self.log = Logger.Logger()
         
     def getVersion(self):
         return commands.getoutput('vboxmanage --version')
@@ -25,8 +26,9 @@ class VirtualMachineDriver(object):
                 return vms[i]
         
     def scanForFiles(self):
+        userHome = os.getenv("HOME")
         files = []
-        rootDir = '/root/VirtualBox VMs/'
+        rootDir = userHome + '/VirtualBox VMs/'
         dirs = os.listdir(rootDir)
         for i in range(len(dirs)):
             path = rootDir + dirs[i] + "/" + dirs[i] + '.vbox'
@@ -127,64 +129,74 @@ class VirtualMachineDriver(object):
     def createVm(self, name, os, mem, cpu, harddrive, cddrive, networkadapter, mac):
         if mac == "":
             mac = "auto"
-        print commands.getoutput('vboxmanage createvm --name ' + name + ' --ostype ' + os + ' --register')
-        print commands.getoutput('vboxmanage modifyvm ' + name + ' --memory ' + mem + ' --cpus ' + cpu + ' --ioapic on --nic1 bridged --bridgeadapter1 ' + networkadapter + ' --vram 28 --macaddress1 ' + mac)
-        print commands.getoutput('vboxmanage storagectl ' + name + ' --name SATA --add sata --bootable on --portcount 2')
+        cmd = commands.getoutput('vboxmanage createvm --name ' + name + ' --ostype ' + os + ' --register')
+        self.log.log("Creating new VM " + name + " CPUs:" + cpu + " Memory:" + mem + " HardDrive:" + harddrive + " CD Drive:" + cddrive + " Network Adapter: " + networkadapter + " MAC:" + mac + " " + cmd)
+        commands.getoutput('vboxmanage modifyvm ' + name + ' --memory ' + mem + ' --cpus ' + cpu + ' --ioapic on --nic1 bridged --bridgeadapter1 ' + networkadapter + ' --vram 28 --macaddress1 ' + mac)
+        commands.getoutput('vboxmanage storagectl ' + name + ' --name SATA --add sata --bootable on --portcount 2')
         if harddrive == "":
-            print commands.getoutput('vboxmanage storageattach ' + name + ' --storagectl SATA --type hdd --device 0 --port 0 --medium emptydrive')
+            cmd = commands.getoutput('vboxmanage storageattach ' + name + ' --storagectl SATA --type hdd --device 0 --port 0 --medium emptydrive')
         else:
             self.changeHardDrive(name, harddrive)
         if cddrive == "":
-            print commands.getoutput('vboxmanage storageattach ' + name + ' --storagectl SATA --type dvddrive --device 0 --port 1 --medium emptydrive')
+            cmd = commands.getoutput('vboxmanage storageattach ' + name + ' --storagectl SATA --type dvddrive --device 0 --port 1 --medium emptydrive')
         else:
             self.changeCdDrive(name, cddrive)
         
     def changeMem(self, vmname, mem):
-        print commands.getoutput('vboxmanage modifyvm ' + vmname + ' --memory ' + mem)
+        cmd = commands.getoutput('vboxmanage modifyvm ' + vmname + ' --memory ' + mem)
+        self.log.log("Changing memory on " + vmname + " to " + mem + "mb" + " " + cmd)
         
     def changeCpu(self, vmname, cpu):
-        print commands.getoutput('vboxmanage modifyvm ' + vmname + ' --cpus ' + cpu)
+        cmd = commands.getoutput('vboxmanage modifyvm ' + vmname + ' --cpus ' + cpu)
+        self.log.log("Changing amount of CPUs on " + vmname + " to " + cpu + " " + cmd)
         
     def changeNetworkAdapter(self, vmname, networkadapter):
-        print commands.getoutput('vboxmanage modifyvm ' + vmname + ' --nic1 bridged --bridgeadapter1 ' + networkadapter)
+        cmd = commands.getoutput('vboxmanage modifyvm ' + vmname + ' --nic1 bridged --bridgeadapter1 ' + networkadapter)
+        self.log.log("Changing network adapter on " + vmname + " to bridge to " + networkadapter + " " + cmd)
         
     def changeMacAddress(self, vmname, mac):
-        print commands.getoutput('vboxmanage modifyvm ' + vmname + ' --macaddress1 ' + mac)
+        cmd = commands.getoutput('vboxmanage modifyvm ' + vmname + ' --macaddress1 ' + mac)
+        self.log.log("Changing MAC Address on " + vmname + " to " + mac + " " + cmd)
         
     def changeName(self, vmname, newname):
-        print commands.getoutput('vboxmanage modifyvm ' + vmname + ' --name ' + newname)
+        cmd = commands.getoutput('vboxmanage modifyvm ' + vmname + ' --name ' + newname)
+        self.log.log("Changing name of " + vmname + " to " + newname + " " + cmd)
         
     def changeCdDrive(self, vmname, cddrive):
         if cddrive == 'empty':
-            print commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type dvddrive --device 0 --port 1 --medium emptydrive")
+            cmd = commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type dvddrive --device 0 --port 1 --medium emptydrive")
         else:
-            print commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type dvddrive --device 0 --port 1 --medium " + cddrive)
+            cmd = commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type dvddrive --device 0 --port 1 --medium " + cddrive)
+        self.log.log("Changing CD Drive media on " + vmname + " to " + cddrive + " " + cmd)
         
     def changeHardDrive(self, vmname, harddrive):
         if harddrive == 'empty':
-            print commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type hdd --device 0 --port 0 --medium none")
+            cmd = commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type hdd --device 0 --port 0 --medium none")
         else:
-            print commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type hdd --device 0 --port 0 --medium " + harddrive)
+            cmd = commands.getoutput('vboxmanage storageattach ' + vmname + " --storagectl 'SATA' --type hdd --device 0 --port 0 --medium " + harddrive)
+        self.log.log("Changing Hard Drive media on " + vmname + " to " + harddrive + " " + cmd)
         
     def changeOsType(self, vmname, ostype):
-        print commands.getoutput('vboxmanage modifyvm ' + vmname + ' --ostype ' + ostype)
+        cmd = commands.getoutput('vboxmanage modifyvm ' + vmname + ' --ostype ' + ostype)
+        self.log.log("Changing OS Type on " + vmname + " to " + ostype + " " + cmd)
         
     def startVm(self, vmname):
-        print commands.getoutput('vboxmanage startvm ' + vmname + ' --type headless')
+        cmd = commands.getoutput('vboxmanage startvm ' + vmname + ' --type headless')
+        self.log.log("Starting VM " + vmname + " " + cmd)
         
     def stopVm(self, vmname):
-        print commands.getoutput('vboxmanage controlvm ' + vmname + ' poweroff')
+        cmd = commands.getoutput('vboxmanage controlvm ' + vmname + ' poweroff')
+        self.log.log("Stopping VM " + vmname + " " + cmd)
         
     def restartVm(self, vmname):
-        print commands.getoutput('vboxmanage controlvm ' + vmname + ' reset')
+        cmd = commands.getoutput('vboxmanage controlvm ' + vmname + ' reset')
+        self.log.log("Restarting VM " + vmname + " " + cmd)
         
     def deleteVm(self, vmname):
-        print commands.getoutput('vboxmanage unregistervm ' + vmname + ' --delete')
+        cmd = commands.getoutput('vboxmanage unregistervm ' + vmname + ' --delete')
+        self.log.log("Deleting VM " + vmname + " " + cmd)
         
-    
-        
-        
-        
+
         
         
         
