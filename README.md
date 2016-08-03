@@ -16,6 +16,7 @@ VirtualBox Web Interface was built for Ubuntu server, but should run on any linu
 <p>python ./install.py</p>
 <p>service virtualboxwebinterface start</p>
 <p>open a browser and go to http://your-server-ip:50</p>
+#####Install Directory: /etc/VirtualBoxWebInterface
   
   
 ####Change login username/password:
