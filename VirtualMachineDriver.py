@@ -26,9 +26,8 @@ class VirtualMachineDriver(object):
                 return vms[i]
         
     def scanForFiles(self):
-        userHome = os.getenv("HOME")
         files = []
-        rootDir = userHome + '/VirtualBox VMs/'
+        rootDir = '/root/VirtualBox VMs/'
         dirs = os.listdir(rootDir)
         for i in range(len(dirs)):
             path = rootDir + dirs[i] + "/" + dirs[i] + '.vbox'
